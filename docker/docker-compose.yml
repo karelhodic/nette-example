@@ -1,0 +1,19 @@
+version: '2'
+services:
+
+  example:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: example
+    ports:
+      - "80:80"
+    volumes:
+      - ./../:/var/www/html
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - "3306:3306"
