@@ -1,2 +1,5 @@
 services:
-	- App\Router\RouterFactory::createRouter
+    - App\Router\RouterFactory::createRouter
+
+    # factory
+    - App\component\Navbar\INavbarFactory

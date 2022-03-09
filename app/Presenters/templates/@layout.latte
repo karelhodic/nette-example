@@ -4,16 +4,19 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 
+	<link rel="stylesheet" href="{$baseUrl}/dist/style.css?v={sha1(filemtime('dist/style.css'))}">
+	{block scripts}
+		{*include nette ajax*}
+		<script src="{$baseUrl}/dist/front.js?v={sha1(filemtime('dist/front.js'))}" async></script>
+	{/block}
+
 	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
 </head>
 
 <body>
 	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
 
+	{control navbar}
 	{include content}
-
-	{block scripts}
-	<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
-	{/block}
 </body>
 </html>
