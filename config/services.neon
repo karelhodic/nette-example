@@ -1,5 +1,12 @@
 services:
     - App\Router\RouterFactory::createRouter
+    security.passwords: Nette\Security\Passwords(::PASSWORD_BCRYPT, [cost: 12])
 
     # factory
     - App\component\Navbar\INavbarFactory
+    - App\component\RegistrationForm\IRegistrationFormFactory
+
+    # package
+    - App\Package\User\UserDatabase
+    - App\Package\User\UserFacade
+    - App\Package\User\UserMapper
