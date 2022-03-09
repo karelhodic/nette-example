@@ -8,7 +8,6 @@ use Nette\Application\UI\Presenter;
 
 class BasePresenter extends Presenter
 {
-
     /** @var INavbarFactory @inject */
     public INavbarFactory $navbarFactory;
 
