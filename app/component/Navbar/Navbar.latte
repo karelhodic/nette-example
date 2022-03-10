@@ -5,8 +5,12 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
+            {if $user->isLoggedIn()}
+            <li><a href="{plink Sign:out}"><span class="glyphicon glyphicon-log-out"></span> odhlásit se</a></li>
+            {else}
             <li><a href="{plink Registration:default}"><span class="glyphicon glyphicon-user"></span> Registrovat</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Příhlásit</a></li>
+            <li><a href="{plink Sign:in}"><span class="glyphicon glyphicon-log-in"></span> Příhlásit</a></li>
+            {/if}
         </ul>
     </div>
 </nav>
