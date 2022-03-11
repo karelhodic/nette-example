@@ -11,3 +11,15 @@ CREATE TABLE `user` (
     COLLATE='utf8_bin'
 ENGINE=InnoDB
 ;
+
+CREATE TABLE `article` (
+    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(64) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+    `perex` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+    `created` DATETIME NULL DEFAULT NULL,
+    `requires_logging_in` TINYINT(1) NOT NULL DEFAULT '1',
+    PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;

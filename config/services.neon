@@ -8,8 +8,13 @@ services:
     - App\component\RegistrationForm\IRegistrationFormFactory
     - App\component\SignForm\ISignInFormFactory
     - App\component\UserForm\IUserFormFactory
+    - App\component\Article\IArticleFactory
 
     # package
     - App\Package\User\UserDatabase
     - App\Package\User\UserFacade
     - App\Package\User\UserMapper
+
+    - App\Package\Article\ArticleDatabase
+    - App\Package\Article\ArticleFacade
+    - App\Package\Article\ArticleMapper

@@ -1,0 +1,6 @@
+{varType \App\Package\Article\Article[] $articles}
+{foreach $articles as $article}
+    <h2>{$article->getName()}</h2>
+    <p>{$article->getCreated()|date:'j. n. Y'}</p>
+    <p>{$article->getPerex()}</p>
+{/foreach}
