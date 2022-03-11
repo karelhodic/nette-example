@@ -17,10 +17,18 @@ class ArticleFacade
     }
 
     /**
+     * @param  bool $loggingIn
      * @return array<Article>
      */
-    public function getArticles(): array
+    public function getArticles(bool $loggingIn = true): array
     {
-        return $this->articleMapper->getArticles($this->articleDatabase->getRows()->fetchAll());
+        $rows = $this->articleDatabase->getRows();
+
+        if (!$loggingIn) {
+            // jenom články pro nepřihlášené
+            $rows->where(ArticleDatabase::COLUMN_REQUIRES_LOGGING_IN, false);
+        }
+
+        return $this->articleMapper->getArticles($rows->fetchAll());
     }
 }

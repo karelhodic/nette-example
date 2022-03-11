@@ -18,3 +18,4 @@ services:
     - App\Package\Article\ArticleDatabase
     - App\Package\Article\ArticleFacade
     - App\Package\Article\ArticleMapper
+    - App\Package\Article\ArticleUserFacade

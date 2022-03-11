@@ -2,21 +2,21 @@
 
 namespace App\component\Article;
 
-use App\Package\Article\ArticleFacade;
+use App\Package\Article\ArticleUserFacade;
 use Nette\Application\UI\Control;
 
 class Article extends Control
 {
-    private ArticleFacade $articleFacade;
+    private ArticleUserFacade $articleUserFacade;
 
-    public function __construct(ArticleFacade $articleFacade)
+    public function __construct(ArticleUserFacade $articleUserFacade)
     {
-        $this->articleFacade = $articleFacade;
+        $this->articleUserFacade = $articleUserFacade;
     }
 
     public function render(): void
     {
-        $this->getTemplate()->articles = $this->articleFacade->getArticles();
+        $this->getTemplate()->articles = $this->articleUserFacade->getArticles();
         $this->getTemplate()->setFile(__DIR__ . '/Article.latte');
         $this->getTemplate()->render();
     }
