@@ -10,8 +10,10 @@
 
     <div>
         {* button *}
+        {if $user->isLoggedIn()}
         <span><span class="glyphicon glyphicon-plus"></span> To se mi líbí</span>
         <span><span class="glyphicon glyphicon-minus"></span> To se mi nelíbí</span>
+        {/if}
     </div>
 {/foreach}
 

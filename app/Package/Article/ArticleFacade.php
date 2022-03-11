@@ -19,7 +19,7 @@ class ArticleFacade
     }
 
     /**
-     * @param ?int $userId
+     * @param  ?int $userId
      * @param  bool $loggingIn
      * @param  int  $limit
      * @param  int  $offset

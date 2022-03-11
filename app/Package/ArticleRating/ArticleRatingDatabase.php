@@ -12,11 +12,7 @@ class ArticleRatingDatabase extends Database
     protected ?string $nameTable = self::TABLE;
 
     public const COLUMN_ID = 'id';
-
     public const COLUMN_USER_ID = 'user_id';
-
     public const COLUMN_ARTICLE_ID = 'article_id';
-
     public const COLUMN_RATING = 'rating';
-
 }

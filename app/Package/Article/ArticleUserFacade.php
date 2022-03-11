@@ -25,7 +25,10 @@ class ArticleUserFacade
      */
     public function getArticles(int $limit, int $offset): array
     {
-        return $this->articleFacade->getArticles($this->user->getId(), $this->user->isLoggedIn(), $limit, $offset);
+        /** @var int | null $userId */
+        $userId = $this->user->getId();
+
+        return $this->articleFacade->getArticles($userId, $this->user->isLoggedIn(), $limit, $offset);
     }
 
     public function countArticles(): int

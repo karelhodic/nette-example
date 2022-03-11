@@ -34,8 +34,7 @@ class Article
         DateTime $created,
         bool $requiresLoggingIn,
         ?ArticleRating $articleRating
-    )
-    {
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->perex = $perex;

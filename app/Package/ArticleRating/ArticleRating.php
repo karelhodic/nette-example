@@ -77,8 +77,8 @@ class ArticleRating
     }
 
     /**
-     * @param int $likeCount
-     * @param int $dislikeCount
+     * @param int  $likeCount
+     * @param int  $dislikeCount
      * @param bool $like
      * @param bool $dislike
      */
