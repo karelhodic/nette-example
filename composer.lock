@@ -4,8 +4,77 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "697fa104239301dfcc96ca2770765015",
+    "content-hash": "ddbaccb7c00f188c1bbe483933193463",
     "packages": [
+        {
+            "name": "ipub/visual-paginator",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ipublikuj-ui/visual-paginator.git",
+                "reference": "e5a14d8c36ea4261ecb6fb2acb7f9d90b7c49970"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ipublikuj-ui/visual-paginator/zipball/e5a14d8c36ea4261ecb6fb2acb7f9d90b7c49970",
+                "reference": "e5a14d8c36ea4261ecb6fb2acb7f9d90b7c49970",
+                "shasum": ""
+            },
+            "require": {
+                "latte/latte": "^2.5",
+                "nette/application": "^3.0",
+                "nette/di": "^3.0",
+                "nette/utils": "^3.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "janmarek/mockista": "^1.1",
+                "nette/bootstrap": "^3.0",
+                "nette/forms": "^3.0",
+                "nette/tester": "^2.2",
+                "tracy/tracy": "^2.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "IPub\\VisualPaginator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "email": "david@grudl.com"
+                },
+                {
+                    "name": "iPublikuj:cms",
+                    "email": "info@ipublikuj.eu",
+                    "homepage": "http://www.ipublikuj.eu/"
+                }
+            ],
+            "description": "Visual paginator for Nette Framework",
+            "homepage": "https://github.com/iPublikuj/visual-paginator",
+            "keywords": [
+                "ipub",
+                "ipublikuj",
+                "nette",
+                "paginator",
+                "paging",
+                "tools"
+            ],
+            "support": {
+                "email": "support@ipublikuj.eu",
+                "issues": "https://github.com/iPublikuj/visual-paginator/issues",
+                "source": "https://github.com/ipublikuj-ui/visual-paginator/tree/master"
+            },
+            "abandoned": true,
+            "time": "2019-05-24T18:33:21+00:00"
+        },
         {
             "name": "latte/latte",
             "version": "v2.10.8",
@@ -1944,7 +2013,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "ipub/visual-paginator": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

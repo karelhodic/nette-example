@@ -1,0 +1,42 @@
+{if $paginator->pageCount > 1}
+    <nav aria-label="Stránkování">
+        <ul class="pagination">
+
+            {* PŘEDCHOZÍ *}
+	    {if $paginator->isFirst()}
+                <li class="page-item disabled"><a class="page-link" href="#">« Předchozí</a></li>
+            {else}
+                <li class="page-item">
+                    <a class="page-link{if $useAjax} ajax{/if}" href="{link $handle, 'page' => $paginator->page - 1}" rel="prev" >« Předchozí</a>
+                </li>
+            {/if}
+
+	    {foreach $steps as $step}
+                {if $step == $paginator->page} {* AKTIVNÍ STRÁNKA *}
+                    <li class="page-item active">
+                        <a class="page-link" href="#">
+                            <span>{$step}</span>
+                        </a>
+                    </li>
+                {else}
+                    <li class="page-item">
+                        <a class="page-link{if $useAjax} ajax{/if}" href="{link $handle, 'page' => $step}">{$step}</a>
+                    </li>
+                {/if}
+
+                {if $iterator->nextValue > $step + 1}
+                    <li class="disabled">…</li>
+                {/if}
+            {/foreach}
+
+	    {* NÁSLEDUJÍCÍ *}
+	    {if $paginator->isLast()}
+                <li class="page-item disabled"><a class="page-link" href="#">Následující »</a></li>
+            {else}
+                <li>
+                    <a class="page-link{if $useAjax} ajax{/if}" href="{link $handle, 'page' => $paginator->page + 1}" rel="next" >Následující »</a>
+                </li>
+            {/if}
+        </ul>
+    </nav>
+{/if}

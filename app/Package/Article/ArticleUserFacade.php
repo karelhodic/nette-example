@@ -19,10 +19,17 @@ class ArticleUserFacade
     }
 
     /**
-     * @return array<Article>
+     * @param  int $limit
+     * @param  int $offset
+     * @return array
      */
-    public function getArticles(): array
+    public function getArticles(int $limit, int $offset): array
     {
-        return $this->articleFacade->getArticles($this->user->isLoggedIn());
+        return $this->articleFacade->getArticles($this->user->isLoggedIn(), $limit, $offset);
+    }
+
+    public function countArticles(): int
+    {
+        return $this->articleFacade->countArticles($this->user->isLoggedIn());
     }
 }
