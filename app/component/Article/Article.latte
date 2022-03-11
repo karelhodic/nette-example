@@ -1,4 +1,5 @@
 {varType \App\Package\Article\Article[] $articles}
+{snippet article}
 {foreach $articles as $article}
     <h2>{$article->getName()}</h2>
     <p>{$article->getCreated()|date:'j. n. Y'}</p>
@@ -11,10 +12,11 @@
     <div>
         {* button *}
         {if $user->isLoggedIn()}
-        <span><span class="glyphicon glyphicon-plus"></span> To se mi líbí</span>
-        <span><span class="glyphicon glyphicon-minus"></span> To se mi nelíbí</span>
+        <span><a class="ajax" n:href="like! $article->getId()"><span class="glyphicon glyphicon-plus"></span> To se mi líbí</a></span>
+        <span><a class="ajax" n:href="dislike! $article->getId()"><span class="glyphicon glyphicon-minus"></span> To se mi nelíbí</a></span>
         {/if}
     </div>
 {/foreach}
 
 {control visualPaginator}
+{/snippet}

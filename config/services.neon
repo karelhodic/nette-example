@@ -20,3 +20,7 @@ services:
     - App\Package\Article\ArticleFacade
     - App\Package\Article\ArticleMapper
     - App\Package\Article\ArticleUserFacade
+
+    - App\Package\ArticleRating\ArticleRatingDatabase
+    - App\Package\ArticleRating\ArticleRatingFacade
+    - App\Package\ArticleRating\ArticleRatingUserFacade

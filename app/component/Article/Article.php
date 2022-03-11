@@ -3,6 +3,7 @@
 namespace App\component\Article;
 
 use App\Package\Article\ArticleUserFacade;
+use App\Package\ArticleRating\ArticleRatingUserFacade;
 use IPub\VisualPaginator\Components as VisualPaginator;
 use Nette\Application\UI\Control;
 
@@ -13,9 +14,12 @@ class Article extends Control
 
     private ArticleUserFacade $articleUserFacade;
 
-    public function __construct(ArticleUserFacade $articleUserFacade)
+    private ArticleRatingUserFacade $articleRatingUserFacade;
+
+    public function __construct(ArticleUserFacade $articleUserFacade, ArticleRatingUserFacade $articleRatingUserFacade)
     {
         $this->articleUserFacade = $articleUserFacade;
+        $this->articleRatingUserFacade = $articleRatingUserFacade;
     }
 
     public function render(): void
@@ -46,5 +50,31 @@ class Article extends Control
         $control->setTemplateFile(__DIR__ . '/../../Presenters/templates/paginator.latte');
 
         return $control;
+    }
+
+    /**
+     * @throws \Nette\Security\AuthenticationException
+     */
+    public function handleLike(int $articleId): void
+    {
+        if (!$this->getPresenter()->isAjax()) {
+            return;
+        }
+
+        $this->articleRatingUserFacade->like($articleId);
+        $this->redrawControl();
+    }
+
+    /**
+     * @throws \Nette\Security\AuthenticationException
+     */
+    public function handleDislike(int $articleId): void
+    {
+        if (!$this->getPresenter()->isAjax()) {
+            return;
+        }
+
+        $this->articleRatingUserFacade->dislike($articleId);
+        $this->redrawControl();
     }
 }
