@@ -3,6 +3,16 @@
     <h2>{$article->getName()}</h2>
     <p>{$article->getCreated()|date:'j. n. Y'}</p>
     <p>{$article->getPerex()}</p>
+    <div>
+        Líbí se {$article->getArticleRating()->getLikeCount()} uživatelům
+        Nelíbí se {$article->getArticleRating()->getDislikeCount()} uživatelům
+    </div>
+
+    <div>
+        {* button *}
+        <span><span class="glyphicon glyphicon-plus"></span> To se mi líbí</span>
+        <span><span class="glyphicon glyphicon-minus"></span> To se mi nelíbí</span>
+    </div>
 {/foreach}
 
 {control visualPaginator}

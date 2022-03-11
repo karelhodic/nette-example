@@ -19,19 +19,20 @@ class ArticleFacade
     }
 
     /**
+     * @param ?int $userId
      * @param  bool $loggingIn
      * @param  int  $limit
      * @param  int  $offset
      * @return array<Article>
      */
-    public function getArticles(bool $loggingIn, int $limit, int $offset): array
+    public function getArticles(?int $userId, bool $loggingIn, int $limit, int $offset): array
     {
         $rows = $this->getRowsRequiresLoggingIn($loggingIn);
 
         // @phpstan-ignore-next-line
         $rows->limit($limit, $offset);
 
-        return $this->articleMapper->getArticles($rows->fetchAll());
+        return $this->articleMapper->getArticles($rows, $userId);
     }
 
     /**

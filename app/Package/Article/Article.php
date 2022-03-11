@@ -2,6 +2,7 @@
 
 namespace App\Package\Article;
 
+use App\Package\ArticleRating\ArticleRating;
 use Nette\Utils\DateTime;
 
 class Article
@@ -17,6 +18,8 @@ class Article
 
     private bool $requiresLoggingIn;
 
+    private ?ArticleRating $articleRating;
+
     /**
      * @param int|null $id
      * @param string   $name
@@ -24,13 +27,37 @@ class Article
      * @param DateTime $created
      * @param bool     $requiresLoggingIn
      */
-    public function __construct(?int $id, string $name, string $perex, DateTime $created, bool $requiresLoggingIn)
+    public function __construct(
+        ?int $id,
+        string $name,
+        string $perex,
+        DateTime $created,
+        bool $requiresLoggingIn,
+        ?ArticleRating $articleRating
+    )
     {
         $this->id = $id;
         $this->name = $name;
         $this->perex = $perex;
         $this->created = $created;
         $this->requiresLoggingIn = $requiresLoggingIn;
+        $this->articleRating = $articleRating;
+    }
+
+    /**
+     * @return ArticleRating|null
+     */
+    public function getArticleRating(): ?ArticleRating
+    {
+        return $this->articleRating;
+    }
+
+    /**
+     * @param ArticleRating|null $articleRating
+     */
+    public function setArticleRating(?ArticleRating $articleRating): void
+    {
+        $this->articleRating = $articleRating;
     }
 
     /**
