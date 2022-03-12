@@ -1,1 +1,14 @@
-{control form}
+{form form}
+    <div class="col-sm-12 col-xs-12">
+        {foreach $form->getControls() as $formControl}
+            <div class="form-group">
+                {if $formControl->name === 'login'}
+                    {input $formControl->name class => "btn btn-default"}
+                {else}
+                    {label $formControl->name /}
+                    {input $formControl->name, class => "form-control"}
+                {/if}
+            </div>
+        {/foreach}
+    </div>
+{/form}
