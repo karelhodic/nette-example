@@ -1,4 +1,5 @@
 {varType \App\Package\Article\Article[] $articles}
+<b>Řazení:</b> <a href="{plink articleNew}">nejnovejší</a> <a href="{plink articleOld}">nejstarší</a> <a href="{plink rating}">hodnocení</a> <a href="{plink alphabetical}">abecedně</a>
 {snippet article}
 {foreach $articles as $article}
     <h2>{$article->getName()}</h2>

@@ -28,7 +28,7 @@ class ArticleMapper
                                     `' . ArticleRatingDatabase::COLUMN_RATING . '` = ?
                                 AND
                                     `' . ArticleRatingDatabase::TABLE . '`.`' . ArticleRatingDatabase::COLUMN_ARTICLE_ID . '` = `' . ArticleDatabase::TABLE . '`.`' . ArticleDatabase::COLUMN_ID . '`
-                                ) likeCount', true)
+                                ) `' . ArticleDatabase::COLUMN_LIKE_COUNT . '`', true)
             ->select('( SELECT
                                     COUNT(*)
                                 FROM
@@ -37,7 +37,7 @@ class ArticleMapper
                                     `' . ArticleRatingDatabase::COLUMN_RATING . '` = ?
                                 AND
                                     `' . ArticleRatingDatabase::TABLE . '`.`' . ArticleRatingDatabase::COLUMN_ARTICLE_ID . '` = `' . ArticleDatabase::TABLE . '`.`' . ArticleDatabase::COLUMN_ID . '`
-                                ) dislikeCount', false);
+                                ) `' . ArticleDatabase::COLUMN_DISLIKE_COUNT . '`', false);
 
         if ($userId !== null) {
             $rows->select('( SELECT

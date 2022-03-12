@@ -2,6 +2,7 @@
 
 namespace App\component\Article;
 
+use App\Package\Article\ArticleDatabase;
 use App\Package\Article\ArticleUserFacade;
 use App\Package\ArticleRating\ArticleRatingUserFacade;
 use IPub\VisualPaginator\Components as VisualPaginator;
@@ -15,6 +16,8 @@ class Article extends Control
     private ArticleUserFacade $articleUserFacade;
 
     private ArticleRatingUserFacade $articleRatingUserFacade;
+
+    private array $order = [];
 
     public function __construct(ArticleUserFacade $articleUserFacade, ArticleRatingUserFacade $articleRatingUserFacade)
     {
@@ -31,6 +34,7 @@ class Article extends Control
         $this->getTemplate()->articles = $this->articleUserFacade->getArticles(
             $paginator->getItemsPerPage(),
             $paginator->getOffset(),
+            $this->order,
         );
 
         $this->getTemplate()->setFile(__DIR__ . '/Article.latte');
@@ -41,7 +45,7 @@ class Article extends Control
     {
         $control = new VisualPaginator\Control();
 
-        // budeme stránkovat bez apaxu
+        // budeme stránkovat bez ajaxu
         $control->disableAjax();
 
         $paginator = $control->getPaginator();
@@ -76,5 +80,25 @@ class Article extends Control
 
         $this->articleRatingUserFacade->dislike($articleId);
         $this->redrawControl();
+    }
+
+    public function articleNew(): void
+    {
+        $this->order[ArticleDatabase::COLUMN_CREATED] = 'DESC';
+    }
+
+    public function articleOld(): void
+    {
+        $this->order[ArticleDatabase::COLUMN_CREATED] = 'ASC';
+    }
+
+    public function rating(): void
+    {
+        $this->order[ArticleDatabase::COLUMN_LIKE_COUNT] = 'DESC';
+    }
+
+    public function alphabetical(): void
+    {
+        $this->order[ArticleDatabase::COLUMN_NAME] = 'ASC';
     }
 }

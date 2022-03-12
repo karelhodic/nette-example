@@ -19,16 +19,18 @@ class ArticleUserFacade
     }
 
     /**
-     * @param  int $limit
-     * @param  int $offset
+     * @param  int   $limit
+     * @param  int   $offset
+     * @param  array $order
      * @return array
+     * @throws \App\Package\DatabaseException
      */
-    public function getArticles(int $limit, int $offset): array
+    public function getArticles(int $limit, int $offset, array $order = []): array
     {
         /** @var int | null $userId */
         $userId = $this->user->getId();
 
-        return $this->articleFacade->getArticles($userId, $this->user->isLoggedIn(), $limit, $offset);
+        return $this->articleFacade->getArticles($userId, $this->user->isLoggedIn(), $limit, $offset, $order);
     }
 
     public function countArticles(): int

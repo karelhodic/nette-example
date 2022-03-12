@@ -19,18 +19,24 @@ class ArticleFacade
     }
 
     /**
-     * @param  ?int $userId
-     * @param  bool $loggingIn
-     * @param  int  $limit
-     * @param  int  $offset
+     * @param  ?int  $userId
+     * @param  bool  $loggingIn
+     * @param  int   $limit
+     * @param  int   $offset
+     * @param  array $order
      * @return array<Article>
+     * @throws \App\Package\DatabaseException
      */
-    public function getArticles(?int $userId, bool $loggingIn, int $limit, int $offset): array
+    public function getArticles(?int $userId, bool $loggingIn, int $limit, int $offset, array $order): array
     {
         $rows = $this->getRowsRequiresLoggingIn($loggingIn);
 
         // @phpstan-ignore-next-line
         $rows->limit($limit, $offset);
+
+        foreach ($order as $key => $value) {
+            $rows->order($key . ' ' . $value);
+        }
 
         return $this->articleMapper->getArticles($rows, $userId);
     }
