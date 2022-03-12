@@ -13,8 +13,16 @@
     <div>
         {* button *}
         {if $user->isLoggedIn()}
-        <span><a class="ajax" n:href="like! $article->getId()"><span class="glyphicon glyphicon-plus"></span> To se mi líbí</a></span>
-        <span><a class="ajax" n:href="dislike! $article->getId()"><span class="glyphicon glyphicon-minus"></span> To se mi nelíbí</a></span>
+            {if $article->getArticleRating()->isLike()}
+                <span class="bg-primary">Líbí se mi to</span>
+            {else}
+                <span><a class="ajax" n:href="like! $article->getId()"><span class="glyphicon glyphicon-plus"></span> To se mi líbí</a></span>
+            {/if}
+            {if $article->getArticleRating()->isDislike()}
+                <span class="bg-primary">Nelíbí se mi to</span>
+            {else}
+                <span><a class="ajax" n:href="dislike! $article->getId()"><span class="glyphicon glyphicon-minus"></span> To se mi nelíbí</a></span>
+            {/if}
         {/if}
     </div>
 {/foreach}
