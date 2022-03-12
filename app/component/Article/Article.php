@@ -19,10 +19,13 @@ class Article extends Control
 
     private array $order = [];
 
+    private ArticleOrderData $articleOrderData;
+
     public function __construct(ArticleUserFacade $articleUserFacade, ArticleRatingUserFacade $articleRatingUserFacade)
     {
         $this->articleUserFacade = $articleUserFacade;
         $this->articleRatingUserFacade = $articleRatingUserFacade;
+        $this->articleOrderData = new ArticleOrderData();
     }
 
     public function render(): void
@@ -36,6 +39,8 @@ class Article extends Control
             $paginator->getOffset(),
             $this->order,
         );
+
+        $this->getTemplate()->order = $this->articleOrderData;
 
         $this->getTemplate()->setFile(__DIR__ . '/Article.latte');
         $this->getTemplate()->render();
@@ -84,21 +89,25 @@ class Article extends Control
 
     public function articleNew(): void
     {
+        $this->articleOrderData->setNew(true);
         $this->order[ArticleDatabase::COLUMN_CREATED] = 'DESC';
     }
 
     public function articleOld(): void
     {
+        $this->articleOrderData->setOld(true);
         $this->order[ArticleDatabase::COLUMN_CREATED] = 'ASC';
     }
 
     public function rating(): void
     {
+        $this->articleOrderData->setRating(true);
         $this->order[ArticleDatabase::COLUMN_LIKE_COUNT] = 'DESC';
     }
 
     public function alphabetical(): void
     {
+        $this->articleOrderData->setAlphabetical(true);
         $this->order[ArticleDatabase::COLUMN_NAME] = 'ASC';
     }
 }
