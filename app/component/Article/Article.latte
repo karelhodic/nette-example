@@ -1,5 +1,6 @@
 {varType \App\Package\Article\Article[] $articles}
-<b>Řazení:</b> <a href="{plink articleNew}">nejnovejší</a> <a href="{plink articleOld}">nejstarší</a> <a href="{plink rating}">hodnocení</a> <a href="{plink alphabetical}">abecedně</a>
+{varType \App\component\Article\ArticleOrderData $order}
+<b>Řazení:</b> <a n:class="$order->isNew() ? bold" href="{plink articleNew}">nejnovejší</a> <a n:class="$order->isOld() ? bold" href="{plink articleOld}">nejstarší</a> <a n:class="$order->isRating() ? bold" href="{plink rating}">hodnocení</a> <a n:class="$order->isAlphabetical() ? bold" href="{plink alphabetical}">abecedně</a>
 {snippet article}
 {foreach $articles as $article}
     <h2>{$article->getName()}</h2>
@@ -13,8 +14,16 @@
     <div>
         {* button *}
         {if $user->isLoggedIn()}
-        <span><a class="ajax" n:href="like! $article->getId()"><span class="glyphicon glyphicon-plus"></span> To se mi líbí</a></span>
-        <span><a class="ajax" n:href="dislike! $article->getId()"><span class="glyphicon glyphicon-minus"></span> To se mi nelíbí</a></span>
+            {if $article->getArticleRating()->isLike()}
+                <span class="bg-primary">Líbí se mi to</span>
+            {else}
+                <span><a class="ajax" n:href="like! $article->getId()"><span class="glyphicon glyphicon-plus"></span> To se mi líbí</a></span>
+            {/if}
+            {if $article->getArticleRating()->isDislike()}
+                <span class="bg-primary">Nelíbí se mi to</span>
+            {else}
+                <span><a class="ajax" n:href="dislike! $article->getId()"><span class="glyphicon glyphicon-minus"></span> To se mi nelíbí</a></span>
+            {/if}
         {/if}
     </div>
 {/foreach}
