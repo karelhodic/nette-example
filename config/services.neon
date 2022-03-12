@@ -2,14 +2,25 @@ services:
     - App\Router\RouterFactory::createRouter
     security.passwords: Nette\Security\Passwords(::PASSWORD_BCRYPT, [cost: 12])
     authenticator: App\Package\Authenticator\Authenticator
+    visualPaginator: IPub\VisualPaginator\DI\VisualPaginatorExtension
 
     # factory
     - App\component\Navbar\INavbarFactory
     - App\component\RegistrationForm\IRegistrationFormFactory
     - App\component\SignForm\ISignInFormFactory
     - App\component\UserForm\IUserFormFactory
+    - App\component\Article\IArticleFactory
 
     # package
     - App\Package\User\UserDatabase
     - App\Package\User\UserFacade
     - App\Package\User\UserMapper
+
+    - App\Package\Article\ArticleDatabase
+    - App\Package\Article\ArticleFacade
+    - App\Package\Article\ArticleMapper
+    - App\Package\Article\ArticleUserFacade
+
+    - App\Package\ArticleRating\ArticleRatingDatabase
+    - App\Package\ArticleRating\ArticleRatingFacade
+    - App\Package\ArticleRating\ArticleRatingUserFacade

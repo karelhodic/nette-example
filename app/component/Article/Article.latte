@@ -1,0 +1,23 @@
+{varType \App\Package\Article\Article[] $articles}
+<b>Řazení:</b> <a href="{plink articleNew}">nejnovejší</a> <a href="{plink articleOld}">nejstarší</a> <a href="{plink rating}">hodnocení</a> <a href="{plink alphabetical}">abecedně</a>
+{snippet article}
+{foreach $articles as $article}
+    <h2>{$article->getName()}</h2>
+    <p>{$article->getCreated()|date:'j. n. Y'}</p>
+    <p>{$article->getPerex()}</p>
+    <div>
+        Líbí se {$article->getArticleRating()->getLikeCount()} uživatelům
+        Nelíbí se {$article->getArticleRating()->getDislikeCount()} uživatelům
+    </div>
+
+    <div>
+        {* button *}
+        {if $user->isLoggedIn()}
+        <span><a class="ajax" n:href="like! $article->getId()"><span class="glyphicon glyphicon-plus"></span> To se mi líbí</a></span>
+        <span><a class="ajax" n:href="dislike! $article->getId()"><span class="glyphicon glyphicon-minus"></span> To se mi nelíbí</a></span>
+        {/if}
+    </div>
+{/foreach}
+
+{control visualPaginator}
+{/snippet}
