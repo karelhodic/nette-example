@@ -6,7 +6,7 @@ Nette Example
 - Z adresáře sql naimportovat do mysql databáze nette_example (bude potřeba založit) dockeru strukturu ze souboru database.sql a dummy data z dummy.sql
 
 ## Login do aplikace
-login: admin@example.org nebo admin2@example.org, heslo: 12345678
+login: admin@example.org nebo admin@example2.org, heslo: 12345678
 
 ## Vývoj css a js
 - V adresáři docker spustit bash bash.sh
