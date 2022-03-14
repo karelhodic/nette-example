@@ -13,7 +13,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 
 # Install nginx, php-fpm and supervisord from ubuntu repository
-RUN apt-get install -y nginx php-fpm supervisor php-mbstring php-mysql && \
+RUN apt-get install -y nginx php-fpm supervisor php-mbstring php-mysql php-curl php-zip php-xml npm composer && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
     
